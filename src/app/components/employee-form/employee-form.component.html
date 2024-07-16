@@ -1,0 +1,43 @@
+<div class="employee-form">
+  <div class="title"><span class="mt-2">{{ isEditMode ? 'Edit Employee Details' : 'Add Employee Details' }}</span></div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="employee-name" class="input-label">
+        <i class="fas fa-user input-icon"></i>
+        <input type="text" id="employee-name" [(ngModel)]="employee.name" name="name" placeholder="Employee name">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="employee-role" class="input-label">
+        <i class="fas fa-briefcase input-icon"></i>
+        <select id="employee-role" name="role" [(ngModel)]="employee.role" class="input-select">
+          <option value="" disabled selected hidden>Select role</option>
+          <option value="product-designer">Product Designer</option>
+          <option value="flutter-developer">Flutter Developer</option>
+          <option value="qa-tester">QA Tester</option>
+          <option value="product-owner">Product Owner</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="form-group date-group">
+      <label for="start-date" class="date-label">
+        <i class="fas fa-calendar-alt input-icon"></i>
+        <input type="text" id="start-date" [(ngModel)]="employee.startDate" name="startDate" class="date-input" 
+               onfocus="(this.type='date')" onblur="(this.type='text'); if(!this.value) this.placeholder = 'Today';" placeholder="Today">
+      </label>
+      <span class="date-separator">→</span>
+      <label for="end-date" class="date-label">
+        <i class="fas fa-calendar-alt input-icon"></i>
+        <input type="text" id="end-date" [(ngModel)]="employee.endDate" name="endDate" class="date-input" 
+               onfocus="(this.type='date')" onblur="(this.type='text'); if(!this.value) this.placeholder = 'No date';" placeholder="No date">
+      </label>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="save-button">{{ isEditMode ? 'Update' : 'Save' }}</button>
+    </div>
+  </form>
+</div>

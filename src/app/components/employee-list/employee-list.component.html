@@ -1,0 +1,74 @@
+<div class="employee-list">
+  <div class="title">
+    <span class="mt-2">Employee List</span>
+  </div>
+  
+  <div class="title2" *ngIf="employees.length > 0">
+    <span class="mt-2">Current Employees</span>
+  </div>
+  <div class="no-records" *ngIf="employees.length === 0">
+    <img src="src/assets/1.png">
+    <p style="font-weight: 500;">No employee records found</p>
+  </div>
+  
+  <ul>
+    <li *ngFor="let employee of employees" class="employee-item">
+      <div class="employee-info">
+        <span class="employee-name">{{ employee.name }}</span>
+        <span class="employee-actions">
+          <button class="edit-button" (click)="onEdit(employee)">
+            <i class="material-icons">edit</i>
+          </button>
+          <button class="delete-button" (click)="onDelete(employee)">
+            <i class="material-icons">delete</i>
+          </button>
+        </span>
+      </div>
+      <div class="employee-dates">
+        <span>{{ employee.role }}</span>
+      </div>
+      <div class="employee-dates">
+        <span *ngIf="employee.endDate; else currentEmployee">
+          {{ employee.startDate | date }} - {{ employee.endDate | date }}
+        </span>
+        <ng-template #currentEmployee>
+          From {{ employee.startDate | date }}
+        </ng-template>
+      </div>
+    </li>
+  </ul>
+  
+  <div class="title2" *ngIf="more.length > 0">
+    <span class="mt-2">Previous Employees</span>
+  </div>
+  <ul>
+    <li *ngFor="let employee of more" class="employee-item">
+      <div class="employee-info">
+        <span class="employee-name">{{ employee.name }}</span>
+        <span class="employee-actions">
+          <button class="edit-button" (click)="onEdit(employee)">
+            <i class="material-icons">edit</i>
+          </button>
+          <button class="delete-button" (click)="onDelete(employee)">
+            <i class="material-icons">delete</i>
+          </button>
+        </span>
+      </div>
+      <div class="employee-dates">
+        <span>{{ employee.role }}</span>
+      </div>
+      <div class="employee-dates">
+        <span *ngIf="employee.endDate; else currentEmployee">
+          {{ employee.startDate | date }} - {{ employee.endDate | date }}
+        </span>
+        <ng-template #currentEmployee>
+          From {{ employee.startDate | date }}
+        </ng-template>
+      </div>
+    </li>
+  </ul>
+  
+  <div class="row">
+    <button class="add-button" (click)="onAddClick()">+</button>
+  </div>
+</div>
